@@ -5,13 +5,13 @@
         <canvas id="canvasId"></canvas>
     </div>
     <%- include('../partials/errorMessage.ejs') %>
-    <form id="Gift Form" enctype="multipart/form-data" action="/workshop" method="POST">
+    <form id="Gift Form" action="/workshop" method="POST">
     <!-- STEP 1 -->
         <section id="step-1" class="form-step">
             <h3>Upload your gift</h3>
             <p>Allowed format files : txt</p>
             <label for="file">Choose your file</label>
-            <input id="file" name="file" type="file" multiple>
+            <input id="file" name="file" type="file" class="filepond">
             <ul id="file-list">
             </ul>
             <div class="backnext">
@@ -81,7 +81,3 @@
                 
     </form>
 </section>
-
-<% gifts.forEach(gift => {%>
-    <div> <%= gift.signature %></div>
-<% }) %>

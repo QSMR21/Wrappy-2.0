@@ -1,0 +1,19 @@
+<body>
+    <h1>Gift Page</h1>
+
+    <% if (gift) { %>
+        <ul>%>
+            <li>fileName: <%= gift.fileName %></li>
+            <li>animation: <%= gift.animation %></li>
+            <li>receiver_name: <%= gift.receiver_name %></li>
+            <li>message: <%= gift.message %></li>
+            <li>signature: <%= gift.signature %></li>
+            <li>enveloppe_color: <%= gift.enveloppe_color %></li>
+            <li>sender_mail: <%= gift.sender_mail %></li>
+            <li>receiver_mail: <%= gift.receiver_mail %></li>
+        </ul>
+    <% } else { %>
+        <p>No gifts available.</p>
+    <% } %>
+
+</body>

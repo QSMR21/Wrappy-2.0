@@ -1,9 +1,12 @@
 const mongoose = require('mongoose')
 
+
 const giftSchema = new mongoose.Schema({
     file: {
+        type: Buffer,
+    },
+    fileType: {
         type: String,
-        required: false
     },
     animation: {
         type: Number,
@@ -32,6 +35,12 @@ const giftSchema = new mongoose.Schema({
     receiver_mail: {
         type: String,
         required: true
+    }
+})
+
+giftSchema.virtual('filePath').get(function () {
+    if (this.file != null && this.fileType != null) {
+        return `data:${this.fileType};charset=utf-8;base64,${this.file.toString('base64')}`
     }
 })
 
