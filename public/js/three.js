@@ -1,6 +1,6 @@
-import * as THREE from 'THREE';
-import { OrbitControls } from './controls/OrbitControls.js';
-import { GLTFLoader } from './loader/GLTFLoader.js';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 
 /**
@@ -17,6 +17,7 @@ import { GLTFLoader } from './loader/GLTFLoader.js';
     
     var mixer, model, clip, clips, action, i, controls;
 
+    
 
 /**
  * Functions
@@ -36,15 +37,15 @@ import { GLTFLoader } from './loader/GLTFLoader.js';
             // const ctx = canvas.getContext("webgl");
 
         //Camera
-            camera.position.set(0, 2, 3);
-            camera.lookAt(new THREE.Vector3(0, 3, 0));
+            camera.position.set(0, 0, 3);
+            camera.lookAt(new THREE.Vector3(0, 1, 0));
 
         //Controls
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enablePan = false;
             controls.maxPolarAngle = Math.PI / 2;
-            //controls.minAzimuthAngle = -2 * Math.PI / 5;
-            //controls.maxAzimuthAngle = 2 * Math.PI / 5;
+            controls.minAzimuthAngle = -2 * Math.PI / 5;
+            controls.maxAzimuthAngle = 2 * Math.PI / 5;
             controls.minDistance = 2;
             controls.maxDistance = 4;
             controls.enableDamping = true;
@@ -52,18 +53,17 @@ import { GLTFLoader } from './loader/GLTFLoader.js';
 
         //Mesh
             loader.load(
-                '../assets/enveloppe.glb',
+                '../public/assets/enveloppe.glb',
 
                 // called when the resource is loaded
                 function (gltf) {
     
                     clips = gltf.animations; // Array<THREE.AnimationClip>
                     model = gltf.scene; // THREE.Group
-
                     scene.add(model);
                     model.rotation.set(1, 3.14, 0);
-                    model.position.set(0, -0.8, 0);
-
+                    model.position.set(0, 0, 0);
+                    
                     mixer = new THREE.AnimationMixer(model);
                     
                     // Play a specific animation
@@ -137,4 +137,4 @@ import { GLTFLoader } from './loader/GLTFLoader.js';
             }
         }
     }
-    
+

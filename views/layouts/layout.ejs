@@ -5,15 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wrappy - Digitally wrap your gift</title>
-    <link rel="icon" href="assets/Logo/Primary.png" type="image/icon type">
+    <link rel="icon" href="/public/assets/Logo/Primary.png" type="image/icon type">
+    <link href="/public/css/main.css" rel="stylesheet">
 
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet"/>
-    <script defer src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
-    <script defer src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script defer src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
-    <script defer src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    <script defer src="public/js/fileUpload.js"></script>
+
+    <script  type="importmap">
+        {
+          "imports": {
+            "three": "https://unpkg.com/three@0.160.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.1/examples/jsm/",
+            "filepond-plugin-image-preview": "https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js",
+            "filepond-plugin-file-encode": "https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js",
+            "filepond-plugin-image-resize": "https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js",
+            "FilePond": "https://unpkg.com/filepond/dist/filepond.js"
+          }
+        }
+    </script>
+    <script defer type="module" src="/public/js/main.js"></script>
+    <script defer type='module' src="/public/js/fileUpload.js"></script>
+
+
 </head>
 
 <body>

@@ -10,7 +10,6 @@
         <section id="step-1" class="form-step">
             <h3>Upload your gift</h3>
             <p>Allowed format files : txt</p>
-            <label for="file">Choose your file</label>
             <input id="file" name="file" type="file" class="filepond">
             <ul id="file-list">
             </ul>
@@ -56,7 +55,8 @@
                 <label for="radio">Red</label>
                 <input type="radio" class="btn color" value="red" color="0xff0000" name="enveloppe_color">
                 <label for="radio">Blue</label>
-                <input type="radio" class="btn color" value="blue" color="0x0000ff" name="enveloppe_color" style="margin-bottom: 20px;"> 
+                <input type="radio" class="btn color" value="blue" color="0x0000ff" name="enveloppe_color"> 
+                <input type="hidden" id="selectedColor" name="selectedColor" value="">
             </div>
             <div class="backnext">
                 <button class="form navigate alt" type="button" step_number="3">Back</button>
@@ -76,8 +76,8 @@
             </div>
             <div class="backnext">
                 <button class="form navigate alt" type="button" step_number="4">Back</button>
-                <button type="submit">Send</button>
+                <button class="form navigate" type="submit">Send</button>
             </div>
-                
+        </section>        
     </form>
 </section>

@@ -6,8 +6,7 @@ const fileMimeTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'app
 //Workshop Route
 router.get('/', async (req, res) => {
     try {
-        const gifts = await Gift.find({})
-        res.render('workshop/index', { gifts: gifts })
+        res.render('workshop/index')
     } catch {
         res.redirect('/')
     }
@@ -20,7 +19,7 @@ router.post('/', (req, res) => {
         receiver_name: req.body.receiver_name,
         message: req.body.message,
         signature: req.body.signature,
-        enveloppe_color: req.body.enveloppe_color,
+        enveloppe_color: req.body.selectedColor,
         sender_mail: req.body.sender_mail,
         receiver_mail: req.body.receiver_mail
     })
@@ -28,8 +27,8 @@ router.post('/', (req, res) => {
 
     gift.save()
         .then(() => {
-            //  res.redirect(`workshop/${gift.id}`)
-            res.render('gift/preview', { gift: gift })
+            res.redirect(`gift/${gift.id}`)
+            //res.render('gift/preview', { gift: gift })
         })
         .catch(() => {
             res.render('workshop/index', {
@@ -41,7 +40,16 @@ router.post('/', (req, res) => {
 
 function saveFile(gift, fileEncoded) {
     if (fileEncoded == null) return
-    const file = JSON.parse(fileEncoded)
+
+    let file;
+    try {
+        // Parse the base64-encoded file data
+        file = JSON.parse(fileEncoded);
+    } catch (error) {
+        console.error("Error parsing file data:", error);
+        return;
+    }
+
     if (file != null && fileMimeTypes.includes(file.type)) {
         gift.file = new Buffer.from(file.data, 'base64')
         gift.fileType = file.type

@@ -1,12 +1,14 @@
 <body>
     <h1>Gift Preview</h1>
 
+    
     <div class="canvas">
         <canvas id="canvasId"></canvas>
     </div>
 
     <% if (gift) { %>
         <ul>%>
+            <li>id: <%= gift.id %></li>
             <li>file: <img height="100" width="100" src="<%= gift.filePath %>"></li>
             <li>animation: <%= gift.animation %></li>
             <li>receiver_name: <%= gift.receiver_name %></li>
@@ -20,4 +22,31 @@
         <p>No gift available.</p>
     <% } %>
 
+    <script defer type="module">
+        // Extract the gift ID from the gift object
+        const giftId = '<%= gift.id %>';
+        import { setcolor } from '../../public/js/three.js';
+
+        // Function to fetch gift color by ID
+        async function fetchGiftColor() {
+            try {
+                const apiUrl = `http://localhost:3000/api/gift/${giftId}`;
+                const response = await fetch(apiUrl);
+                const text = await response.text();
+                console.log('Response Text:', text);
+
+                const data = JSON.parse(text);
+                // Assuming you have a function to set the 3D present color
+                console.log(data.enveloppe_color);
+
+                setcolor(data.enveloppe_color);
+            } catch (error) {
+                console.error('Error fetching gift color:', error);
+            }
+        }
+
+        // Call the function to fetch and set the color
+        fetchGiftColor();
+    </script>
+    
 </body>
